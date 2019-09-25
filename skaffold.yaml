@@ -1,0 +1,38 @@
+apiVersion: skaffold/v1beta14
+kind: Config
+
+build:
+  artifacts:
+    - image: gcr.io/nkubala-demo/gb-frontend
+      context: ./guestbook/php-redis/
+      sync:
+        manual:
+        - src: 'index.html'
+          dest: '/var/www/html/'
+        - src: 'guestbook.php'
+          dest: '/var/www/html/'
+        - src: 'controllers.js'
+          dest: '/var/www/html/'
+    - image: gcr.io/nkubala-demo/gb-redisslave
+      context: ./guestbook/redis-slave/
+
+# deploy:
+#   kubectl:
+#     manifests:
+#       - guestbook/k8s/*.yaml
+
+deploy:
+  helm:
+    releases:
+    - name: skaffold-guestbook
+      chartPath: helm/
+      values:
+        frontendImage: gcr.io/nkubala-demo/gb-frontend
+        redisImage: gcr.io/nkubala-demo/gb-redisslave
+
+
+portForward:
+  - resourceType: service
+    resourceName: frontend
+    port: 80
+    localPort: 9001

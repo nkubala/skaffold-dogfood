@@ -1,0 +1,33 @@
+apiVersion: skaffold/v1beta14
+kind: Config
+
+build:
+  artifacts:
+    - image: gcr.io/nkubala-demo/gb-frontend
+      context: ./php-redis/
+    - image: gcr.io/nkubala-demo/gb-redisslave
+      context: ./redis-slave/
+
+# deploy:
+#   kubectl:
+#     manifests:
+#       - k8s/*.yaml
+
+
+deploy:
+  helm:
+    releases:
+    - name: skaffold-dogfood
+      chartPath: dogfood-helm
+      # valuesFiles:
+        # - values.yaml
+      values:
+        frontendImage: gcr.io/nkubala-demo/gb-frontend
+        redisImage: gcr.io/nkubala-demo/gb-redisslave
+
+
+portForward:
+  - resourceType: service
+    resourceName: frontend
+    port: 80
+    localPort: 9001
