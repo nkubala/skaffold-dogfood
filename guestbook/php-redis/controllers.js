@@ -16,7 +16,12 @@ RedisController.prototype.onRedis = function() {
 };
 
 redisApp.controller('RedisCtrl', function ($scope, $http, $location) {
-        $scope.controller = new RedisController();
+        // HAHA! IT'S A BUG!
+
+        // $scope.controller = new RedisController();
+        $scope.controller = null;
+
+        // ^ SEE? THIS IS A BUG!
         $scope.controller.scope_ = $scope;
         $scope.controller.location_ = $location;
         $scope.controller.http_ = $http;
