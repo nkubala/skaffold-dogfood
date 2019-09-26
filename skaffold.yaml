@@ -29,10 +29,3 @@ deploy:
       values:
         frontendImage: gcr.io/nkubala-demo/gb-frontend
         redisImage: gcr.io/nkubala-demo/gb-redisslave
-
-
-portForward:
-  - resourceType: service
-    resourceName: frontend
-    port: 80
-    localPort: 9001
