@@ -1,0 +1,60 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "jane" to read pods in the "default" namespace.
+kind: RoleBinding
+metadata:
+  name: priya-admin
+  namespace: priya
+subjects:
+- kind: User
+  name: priyawadhwa@google.com # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole #this must be Role or ClusterRole
+  name: admin # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "jane" to read pods in the "default" namespace.
+kind: RoleBinding
+metadata:
+  name: tejal-admin
+  namespace: tejal
+subjects:
+- kind: User
+  name: tejaldesai@google.com # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole #this must be Role or ClusterRole
+  name: admin # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "jane" to read pods in the "default" namespace.
+kind: RoleBinding
+metadata:
+  name: thomas-admin
+  namespace: thomas
+subjects:
+- kind: User
+  name: tstromberg@google.com # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole #this must be Role or ClusterRole
+  name: admin # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "jane" to read pods in the "default" namespace.
+kind: RoleBinding
+metadata:
+  name: nick-admin
+  namespace: nick
+subjects:
+- kind: User
+  name: nkubala@google.com # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole #this must be Role or ClusterRole
+  name: admin # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
+
